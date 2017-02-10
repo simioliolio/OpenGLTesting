@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "OpenGLView.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tile_floor" ofType:@"png"];
+    OpenGLView *glView = [[OpenGLView alloc] initWithFrame:screenBounds textureImagePath:nil];
+    self.view = glView;
 }
 
 - (void)didReceiveMemoryWarning {
