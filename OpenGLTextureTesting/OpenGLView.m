@@ -145,7 +145,7 @@ const GLubyte Indices[] = {
          
         // box node
         SCNNode *boxNode = [SCNNode nodeWithGeometry:boxGeo];
-        boxNode.position = SCNVector3Make(0, 0, boxHeight / 2.0 + 300.0);
+        boxNode.position = SCNVector3Make(0, 120.0, boxHeight / 2.0 + -300.0);
         boxNode.pivot = SCNMatrix4MakeRotation(M_PI_2, 0, 0, 0);
         
         // animation
