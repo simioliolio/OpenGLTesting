@@ -20,5 +20,6 @@
 }
 
 - (id)initWithFrame:(CGRect)frame textureImagePath:(NSString*)path;
+-(void)touch:(CGPoint)touch;
 
 @end

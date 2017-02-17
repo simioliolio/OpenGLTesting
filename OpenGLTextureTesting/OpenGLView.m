@@ -68,6 +68,10 @@ const GLubyte Indices[] = {
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        [self addGestureRecognizer:tap];
+        
         [self setupLayer];
         [self setupContext];
         
@@ -127,22 +131,23 @@ const GLubyte Indices[] = {
          
         
 //         SCNScene *scene = [[SCNScene alloc] init];
-        /*
-         // box
-         CGFloat boxHeight = 10.0;
-         SCNBox *boxGeo = [SCNBox boxWithWidth:boxHeight height:boxHeight length:boxHeight chamferRadius:boxHeight / 10.0];
-         SCNMaterial *mat = [[SCNMaterial alloc] init];
-         mat.locksAmbientWithDiffuse = YES;
-         NSURL *imageFileURL = [[NSBundle mainBundle] URLForResource:@"logo-turquoise" withExtension:@"png"];
-         UIImage *image = [UIImage imageWithContentsOfFile:imageFileURL.path];
-         mat.diffuse.contents = image;
-         mat.specular.contents = [UIColor whiteColor];
-         boxGeo.firstMaterial = mat;
+        
+        // box
+        CGFloat boxHeight = 100.0;
+        SCNBox *boxGeo = [SCNBox boxWithWidth:boxHeight height:boxHeight length:boxHeight chamferRadius:boxHeight / 10.0];
+        SCNMaterial *mat = [[SCNMaterial alloc] init];
+        mat.locksAmbientWithDiffuse = YES;
+        NSURL *imageFileURL = [[NSBundle mainBundle] URLForResource:@"logo-turquoise" withExtension:@"png"];
+        UIImage *image = [UIImage imageWithContentsOfFile:imageFileURL.path];
+        mat.diffuse.contents = image;
+        mat.specular.contents = [UIColor whiteColor];
+        boxGeo.firstMaterial = mat;
          
-         // box node
-         SCNNode *boxNode = [SCNNode nodeWithGeometry:boxGeo];
-         boxNode.position = SCNVector3Make(0, 0, boxHeight / 2.0);
-         boxNode.pivot = SCNMatrix4MakeRotation(M_PI_2, 0, 0, 0);
+        // box node
+        SCNNode *boxNode = [SCNNode nodeWithGeometry:boxGeo];
+        boxNode.position = SCNVector3Make(0, 0, boxHeight / 2.0 + 300.0);
+        boxNode.pivot = SCNMatrix4MakeRotation(M_PI_2, 0, 0, 0);
+        
         // animation
         CABasicAnimation *spin = [CABasicAnimation animationWithKeyPath:@"rotation"];
         spin.fromValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 0, 1, 0)];
@@ -152,7 +157,7 @@ const GLubyte Indices[] = {
         [boxNode addAnimation:spin forKey:@"spin around"];
         
          [scene.rootNode addChildNode:boxNode];
-        */
+        
         
         // dude
         
@@ -172,8 +177,7 @@ const GLubyte Indices[] = {
         
         startTime = CFAbsoluteTimeGetCurrent();
         
-        SCNVector3 explosionPos = SCNVector3Make(0.0, 0.0, -100.0);
-        [Particle addExplosionToScene:scnRenderer.scene position:explosionPos];
+        
         
         SCNCamera *camera = [SCNCamera camera];
         cameraNode = [SCNNode node];
@@ -470,4 +474,15 @@ const GLubyte Indices[] = {
     }
 }
 
+-(void)touch:(CGPoint)touch {
+    NSLog(@"touch");
+    SCNVector3 explosionPos = SCNVector3Make(0.0, 0.0, -100.0);
+    [Particle addExplosionToScene:scnRenderer.scene position:explosionPos];
+}
+
+-(void)tap:(UIGestureRecognizer*)gesture {
+    [self touch:[gesture locationInView:self]];
+}
+
 @end
+
