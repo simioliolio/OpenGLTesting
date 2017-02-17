@@ -27,6 +27,9 @@
 		9101D9991D13F82E00F7E950 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 9101D9981D13F82E00F7E950 /* cube.png */; };
 		9101D99B1D13F87000F7E950 /* tile_floor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9101D99A1D13F87000F7E950 /* tile_floor.png */; };
 		9101D99E1D17D32A00F7E950 /* Texture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9101D99D1D17D32A00F7E950 /* Texture.mm */; };
+		911A28FA1E570C2C00E4BB47 /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 911A28F91E570C2C00E4BB47 /* Particle.m */; };
+		911A28FC1E570F1C00E4BB47 /* Explode.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 911A28FB1E570F1C00E4BB47 /* Explode.scnp */; };
+		911A28FE1E57148A00E4BB47 /* CircleParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = 911A28FD1E57148A00E4BB47 /* CircleParticle.png */; };
 		912296D21E4DE37300CB3F7F /* male_large_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 912296D01E4DE37300CB3F7F /* male_large_01.png */; };
 		912296D31E4DE37300CB3F7F /* man.scn in Resources */ = {isa = PBXBuildFile; fileRef = 912296D11E4DE37300CB3F7F /* man.scn */; };
 		9147DF211DACF3EA00C5DCEA /* box2URL.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9147DF201DACF3EA00C5DCEA /* box2URL.scn */; };
@@ -67,6 +70,10 @@
 		9101D99A1D13F87000F7E950 /* tile_floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_floor.png; sourceTree = "<group>"; };
 		9101D99C1D17D32900F7E950 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		9101D99D1D17D32A00F7E950 /* Texture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Texture.mm; sourceTree = "<group>"; };
+		911A28F81E570C2C00E4BB47 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
+		911A28F91E570C2C00E4BB47 /* Particle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Particle.m; sourceTree = "<group>"; };
+		911A28FB1E570F1C00E4BB47 /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = Explode.scnp; path = "../../../../Downloads/GeometryFighter 2/GeometryFighter/Explode.scnp"; sourceTree = "<group>"; };
+		911A28FD1E57148A00E4BB47 /* CircleParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CircleParticle.png; path = "../../../../Downloads/GeometryFighter 2/GeometryFighter/GeometryFighter.scnassets/Textures/CircleParticle.png"; sourceTree = "<group>"; };
 		912296D01E4DE37300CB3F7F /* male_large_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male_large_01.png; sourceTree = "<group>"; };
 		912296D11E4DE37300CB3F7F /* man.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = man.scn; sourceTree = "<group>"; };
 		9147DF201DACF3EA00C5DCEA /* box2URL.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = box2URL.scn; sourceTree = "<group>"; };
@@ -112,6 +119,7 @@
 		9101D9511D13152E00F7E950 /* OpenGLTextureTesting */ = {
 			isa = PBXGroup;
 			children = (
+				911A28F71E570C0800E4BB47 /* SceneKit */,
 				91D7A1CC1D86DFF400E97DB2 /* Ari.scnassets */,
 				9101D9871D132BC000F7E950 /* CCMaths */,
 				9101D9701D13180500F7E950 /* SimpleVertex.glsl */,
@@ -162,6 +170,17 @@
 				9101D9911D132BCC00F7E950 /* ccTypes.h */,
 			);
 			name = CCMaths;
+			sourceTree = "<group>";
+		};
+		911A28F71E570C0800E4BB47 /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				911A28F81E570C2C00E4BB47 /* Particle.h */,
+				911A28F91E570C2C00E4BB47 /* Particle.m */,
+				911A28FD1E57148A00E4BB47 /* CircleParticle.png */,
+				911A28FB1E570F1C00E4BB47 /* Explode.scnp */,
+			);
+			name = SceneKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,8 +247,10 @@
 				9101D9721D13180500F7E950 /* SimpleVertex.glsl in Resources */,
 				9101D9971D13F5BE00F7E950 /* emojiGuy.png in Resources */,
 				9101D9991D13F82E00F7E950 /* cube.png in Resources */,
+				911A28FC1E570F1C00E4BB47 /* Explode.scnp in Resources */,
 				9101D95F1D13152E00F7E950 /* Assets.xcassets in Resources */,
 				912296D21E4DE37300CB3F7F /* male_large_01.png in Resources */,
+				911A28FE1E57148A00E4BB47 /* CircleParticle.png in Resources */,
 				9101D95D1D13152E00F7E950 /* Main.storyboard in Resources */,
 				912296D31E4DE37300CB3F7F /* man.scn in Resources */,
 				91D7A1CD1D86DFF400E97DB2 /* Ari.scnassets in Resources */,
@@ -247,6 +268,7 @@
 				9101D9941D132BCC00F7E950 /* CC3Kazmath.c in Sources */,
 				9101D95A1D13152E00F7E950 /* ViewController.m in Sources */,
 				9101D9571D13152E00F7E950 /* AppDelegate.m in Sources */,
+				911A28FA1E570C2C00E4BB47 /* Particle.m in Sources */,
 				9101D9541D13152E00F7E950 /* main.m in Sources */,
 				9101D9921D132BCC00F7E950 /* CC3Foundation.m in Sources */,
 				9101D96F1D13158A00F7E950 /* OpenGLView.m in Sources */,

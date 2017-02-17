@@ -12,6 +12,8 @@
 #import "Texture.h"
 #import <SceneKit/SceneKit.h>
 
+#import "Particle.h"
+
 typedef struct {
     float Position[3];
     float Color[4];
@@ -119,6 +121,7 @@ const GLubyte Indices[] = {
         
         SCNText *text = [SCNText textWithString:@"init" extrusionDepth:5.0];
         textNode = [SCNNode nodeWithGeometry:text];
+        textNode.position = SCNVector3Make(0.0, 0.0, -100.0);
         [scene.rootNode addChildNode:textNode];
         
          
@@ -150,6 +153,9 @@ const GLubyte Indices[] = {
         
          [scene.rootNode addChildNode:boxNode];
         */
+        
+        // dude
+        
         NSError *manError;
         NSURL *manURL = [[NSBundle mainBundle] URLForResource:@"man" withExtension:@"scn"];
         SCNScene *man = [SCNScene sceneWithURL:manURL options:nil error:&manError];
@@ -157,16 +163,28 @@ const GLubyte Indices[] = {
         for (SCNNode *node in man.rootNode.childNodes) {
             [manNode addChildNode:node];
         }
+        manNode.position = SCNVector3Make(0.0, 0.0, -400.0);
         [scene.rootNode addChildNode:manNode];
+        
         
         scnRenderer = [SCNRenderer rendererWithContext:_context options:nil];
         scnRenderer.scene = scene;
         
         startTime = CFAbsoluteTimeGetCurrent();
         
+        SCNVector3 explosionPos = SCNVector3Make(0.0, 0.0, -100.0);
+        [Particle addExplosionToScene:scnRenderer.scene position:explosionPos];
+        
         SCNCamera *camera = [SCNCamera camera];
         cameraNode = [SCNNode node];
         cameraNode.camera = camera;
+        /*
+        cameraNode.position = SCNVector3Make(0.0, 0.0, -600.0);
+        SCNNode *centerNode = [SCNNode node];
+        [scnRenderer.scene.rootNode addChildNode:centerNode];
+        SCNLookAtConstraint *constraint = [SCNLookAtConstraint lookAtConstraintWithTarget:centerNode];
+        cameraNode.constraints = @[constraint];
+         */
         [scnRenderer.scene.rootNode addChildNode:cameraNode];
         scnRenderer.pointOfView = cameraNode;
         scnRenderer.autoenablesDefaultLighting = YES;
@@ -212,14 +230,14 @@ const GLubyte Indices[] = {
     
     const GLfloat aspectRatio = (GLfloat)(self.bounds.size.width) / (GLfloat)(self.bounds.size.height);
     const GLfloat fieldView = GLKMathDegreesToRadians(90.0f);
-    const GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(fieldView, aspectRatio, 1.0f, 100.0f);
+    const GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(fieldView, aspectRatio, 1.0f, 1000.0f);
     /*
     glUniformMatrix4fv(_projectionUniform, 1, 0, projectionMatrix.m);
      */
     // Model View
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;
-    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0f, 20.0f, 100.0f);
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0f, 0.0f, 0.0f);
     
     /*
     modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, GLKMathDegreesToRadians(0.0f));
@@ -242,6 +260,9 @@ const GLubyte Indices[] = {
     */
 //    glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
     
+    
+    
+    
     // update time with current time float
     CFAbsoluteTime time = CFAbsoluteTimeGetCurrent() - startTime;
     textNode.geometry = [SCNText textWithString:[NSString stringWithFormat:@"time: %f", time] extrusionDepth:5.0];
@@ -253,8 +274,9 @@ const GLubyte Indices[] = {
     }
     CFAbsoluteTime currentTime = CFAbsoluteTimeGetCurrent();
     CFAbsoluteTime calcTime = time;
-    NSLog(@"currentTime: %f, calcTime: %f, startTime: %f", currentTime, calcTime, startTime);
+//    NSLog(@"currentTime: %f, calcTime: %f, startTime: %f", currentTime, calcTime, startTime);
     
+
     
     [scnRenderer renderAtTime:currentTime];
     
